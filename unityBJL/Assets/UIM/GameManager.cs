@@ -111,8 +111,7 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     _gameState = GameState.AskingIfPunterHits;
-
-                    if (punterHand.player is AiPlayer)
+					if (punterHand.player is AiPlayer)
                     {
                         PunterResponds((punterHand.player as AiPlayer).HitOrStay(bankerHand, false));
                     }
