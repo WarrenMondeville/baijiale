@@ -12,8 +12,7 @@ public class Card : MonoBehaviour
     public Suit suit = Suit.Spades;
     public Rank rank = Rank.Ace;
     public Back back = Back.Red;
-	public uTools.TweenPosition tweenPos;
-	public uTools.TweenRotation tweenRot;
+
 
     private Image _image;
 	private Hand hand;
@@ -28,18 +27,49 @@ public class Card : MonoBehaviour
         }
     }
 
-	public void DealPoker(Hand hand)
+	public void DealPoker (Hand hand)
 	{
 		this.hand = hand;
-		tweenPos.to = hand.cardsGroup.transform.position;//.GetComponent<RectTransform> ().anchoredPosition;
-		tweenPos.enabled = true;
+		var tpos=this.gameObject.AddComponent<CustomTweenPosition> ();
+		tpos.from = GetComponent<RectTransform> ().anchoredPosition3D;
+		tpos.to=hand.GetCardPos();//GetComponent<RectTransform> ().anchoredPosition3D;
+		tpos.duration = 0.6f;
+		tpos.easeType = EaseType.easeInCirc;
+		tpos.onFinished.Add(new EventDelegate(DealRotate));
+		//GetComponent<CustomTweenRotation> ().enabled = true;
 	}
 
-	public void SetCardParent()
+	void DealRotate()
+	{
+		var trot=this.gameObject.AddComponent<CustomTweenRotation>();
+		trot.from = new Vector3 (0, -180, 0);
+		trot.to = new Vector3 (0,-90,0);
+		trot.duration = 0.2f;
+		trot.easeType = EaseType.easeOutCirc;
+		trot.onFinished.Add(new EventDelegate(FaceUp));
+		trot.onFinished.Add (new EventDelegate(DealRotate2));
+	}
+
+	void DealRotate2()
+	{
+		var trot=this.gameObject.AddComponent<CustomTweenRotation1>();
+		trot.from = new Vector3 (0, -90, 0);
+		trot.to = new Vector3 (0,0,0);
+		trot.duration = 0.2f;
+		trot.easeType = EaseType.easeOutCirc;
+		trot.onFinished.Add (new EventDelegate(SetCardParent));
+
+	}
+
+	void SetCardParent()
 	{
 		this.transform.SetParent (hand.cardsGroup.transform);
-	}
+		Debug.Assert(hand.cards.Count < 3, "Attempted to deal to hand with 3 cards!");
+		hand.AddCard(this);
 
+	}
+	
+	
 	public void FaceUp()
 	{
 		string path;

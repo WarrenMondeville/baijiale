@@ -13,12 +13,11 @@ public class Shoe : MonoBehaviour
     {
         var card = shoe.Pop();
         //card.faceUp = true;
-        
-		//card.DealPoker (hand);
-		card.FaceUp ();
-		card.transform.SetParent(hand.cardsGroup.transform);
-        Debug.Assert(hand.cards.Count < 3, "Attempted to deal to hand with 3 cards!");
-        hand.cards.Add(card);
+		card.DealPoker (hand);
+		//card.FaceUp ();
+		//card.transform.SetParent(hand.cardsGroup.transform);
+        //Debug.Assert(hand.cards.Count < 3, "Attempted to deal to hand with 3 cards!");
+        //hand.AddCard(card);
         shoe.Peek().gameObject.SetActive(true);
     }
 
@@ -26,12 +25,16 @@ public class Shoe : MonoBehaviour
     {
         SetupShoe();
     }
-
+	/*
     private void Update()
     {
-		Debug.Log (shoe.Count);
-        shoe.Peek().gameObject.SetActive(true);
-    }
+
+		if (shoe.Count>0) {
+			shoe.Peek().gameObject.SetActive(true);
+			Debug.Log (shoe.Count);
+		}
+        
+    }*/
 
     private void SetupShoe()
     {

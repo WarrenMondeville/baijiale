@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public Hand bankerHand;
     public float dealDelay = 1.0f;
 
+
+
     private System.Random _random;
 	private GameState _gameState=GameState.None; //= GameState.NewHand;
 
@@ -166,20 +168,19 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DealStartingHands()
     {
-        punterHand.buttons.gameObject.SetActive(false);
-        bankerHand.buttons.gameObject.SetActive(false);
-        shoe.Deal(punterHand);
-        yield return new WaitForSeconds(dealDelay);
-        shoe.Deal(bankerHand);
-        yield return new WaitForSeconds(dealDelay);
-        shoe.Deal(punterHand);
-        yield return new WaitForSeconds(dealDelay);
-        shoe.Deal(bankerHand);
-        yield return new WaitForSeconds(dealDelay);
-        gameState = GameState.CheckingImmediateWinners;
+		punterHand.buttons.gameObject.SetActive (false);
+		bankerHand.buttons.gameObject.SetActive (false);
+		shoe.Deal (punterHand);
+		yield return new WaitForSeconds (dealDelay);
+		shoe.Deal (bankerHand);
+		yield return new WaitForSeconds (dealDelay);
+		shoe.Deal (punterHand);
+		yield return new WaitForSeconds (dealDelay);
+		shoe.Deal (bankerHand);
+		yield return new WaitForSeconds (dealDelay);
+		gameState = GameState.CheckingImmediateWinners;
 
-		
-	}
+	}		
 	
 	private void DetermineWinner()
     {

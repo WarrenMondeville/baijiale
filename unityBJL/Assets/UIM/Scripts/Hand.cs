@@ -11,14 +11,25 @@ public class Hand : MonoBehaviour
     public HorizontalLayoutGroup cardsGroup;
     public Text handValue;
     public Player player;
+	public int Value;
+	private Vector3 rectPos;
+	void Awake()
+	{
+		rectPos=GetComponent<RectTransform>().anchoredPosition3D;
+	}
 
-    public int Value
-    {
-        get
-        {
-            return cards.Select(c => (int)c.rank).Where(r => r <= 9).Sum() % 10;
-        }
-    }
+
+	public void AddCard(Card card)
+	{
+		cards.Add (card);
+	 	Value=	cards.Select(c => (int)c.rank).Where(r => r <= 9).Sum() % 10;
+		handValue.text = Value.ToString();
+	}
+
+	public Vector3 GetCardPos()
+	{
+		return rectPos + cards.Count * new Vector3 (66,0,0);
+	}
 
     public void DiscardCards()
     {
@@ -28,10 +39,7 @@ public class Hand : MonoBehaviour
             Destroy(card.gameObject);
         }
         cards.Clear();
+		handValue.text = "";
     }
 
-    private void Update()
-    {
-        handValue.text = Value.ToString();
-    }
 }

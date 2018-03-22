@@ -1,14 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UIM\GameManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UIM\Scripts\Card.cs">
     <Files>
-      <File FileName="Assets\UIM\Hand.cs" Line="10" Column="41" />
-      <File FileName="Assets\UIM\Shoe.cs" Line="9" Column="5" />
-      <File FileName="Assets\UIM\GameManager.cs" Line="114" Column="6" />
+      <File FileName="Assets\UIM\Scripts\Card.cs" Line="34" Column="1" />
+      <File FileName="Assets\UIM\Scripts\UIResultPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets\UIM\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\UIM\Scripts\GameState.cs" Line="1" Column="1" />
+      <File FileName="Assets\UIM\Scripts\PlayerCtr.cs" Line="1" Column="1" />
+      <File FileName="Assets\UIM\Scripts\PlayerInfo.cs" Line="1" Column="1" />
+      <File FileName="Assets\UIM\Scripts\Hand.cs" Line="14" Column="21" />
+      <File FileName="Assets\UIM\Scripts\Shoe.cs" Line="16" Column="14" />
+      <File FileName="Assets\CustomUITween\Scripts\Tween\CustomTweenRotation1.cs" Line="9" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Works\MyGit\baijiale\unityBJL\Assets\UIM\Scripts\GameManager.cs" line="29" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
