@@ -6,8 +6,8 @@ public class PlayerCtr : MonoBehaviour {
 
 	public static PlayerCtr instance;
 
-	public DetermineResult playerDetermine;
-	private int money=1000;
+	
+	private int money=10000;
 	public int Money{
 		get{
 			return money;
@@ -23,17 +23,38 @@ public class PlayerCtr : MonoBehaviour {
 	public delegate void OnPlayerMoneyChangedHandler(int money);
 	public OnPlayerMoneyChangedHandler OnPlayerMoneyChangedEvent;
 
-	public int StakeNum=100;
+	public int StakeNum;
+    public DetermineResult playerDetermine;
 
-	void Awake()
+    public List<GameObject> chips = new List<GameObject>();
+
+    public void ResetData()
+    {
+        StakeNum = 0;
+        playerDetermine = DetermineResult.None;
+        foreach (var item in chips)
+        {
+            Destroy(item);
+        }
+        chips.Clear();
+    }
+
+    void Awake()
 	{
 		instance = this;
+        ResetData();
 
-	}
+    }
 
 
 	public void ResetMony()
 	{
-		Money = 1000;
+		Money = 10000;
 	}
+    public void CancelStake()
+    {
+
+        Money += StakeNum;
+        ResetData();
+    }
 }

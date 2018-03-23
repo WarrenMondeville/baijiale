@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
         gameState = GameState.NewHand;
     }
 
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -134,6 +136,7 @@ public class GameManager : MonoBehaviour
 		case GameState.Stake:
 			punterHand.DiscardCards();
 			bankerHand.DiscardCards();
+                PlayerCtr.instance.ResetData();
 			newHandButton.gameObject.SetActive(true);
 			break;
             case GameState.NewHand:
@@ -193,20 +196,46 @@ public class GameManager : MonoBehaviour
             Debug.Log("Punter wins!");
 			result=DetermineResult.Punter;
 			money=PlayerCtr.instance.StakeNum;
+            if (PlayerCtr.instance.playerDetermine == result)
+            {
+                PlayerCtr.instance.Money += 2 * money;
+            }
+            else {
+                money = -money;
+            }
         }
         else if (bankerHand.Value == punterHand.Value)
         {
             Debug.Log("Push!");
 			result=DetermineResult.Push;
-			money=PlayerCtr.instance.StakeNum*8;
+			money=PlayerCtr.instance.StakeNum;
+            if (PlayerCtr.instance.playerDetermine == result)
+            {
+                PlayerCtr.instance.Money += 9 * money;
+                money = 8 * money;
+            }
+            else
+            {
+                money = -money;
+            }
         }
         else
         {
             Debug.Log("Banker wins!");
 			result=DetermineResult.Banker;
 			money=PlayerCtr.instance.StakeNum;
-
+            if (PlayerCtr.instance.playerDetermine == result)
+            {
+                PlayerCtr.instance.Money += 2 * money;
+            }
+            else
+            {
+                money = -money;
+            }
         }
+
+
+        
 		if (DetemineResultEvent!=null) {
 			DetemineResultEvent(result,money);
 			
@@ -217,6 +246,7 @@ public class GameManager : MonoBehaviour
 
 public enum DetermineResult:byte
 {
+    None,
 	Punter,
 	Banker,
 	Push,
