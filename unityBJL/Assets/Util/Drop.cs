@@ -11,6 +11,7 @@ public class Drop : MonoBehaviour, IDropHandler
 {
 
     public DetermineResult playerDetermine = DetermineResult.None;
+    public Transform par;
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null)
@@ -19,7 +20,7 @@ public class Drop : MonoBehaviour, IDropHandler
             {
                 return;
             }
-            //Debug.Log(eventData.position);
+            Debug.Log(eventData.position);
             Image img = eventData.pointerDrag.GetComponent<Image>();
             if (img != null)
             {
@@ -27,9 +28,10 @@ public class Drop : MonoBehaviour, IDropHandler
                 PlayerCtr.instance.playerDetermine = playerDetermine;
                 PlayerCtr.instance.Money -= num;
                 PlayerCtr.instance.StakeNum += num;
-               // Debug.Log(eventData.pointerDrag.name);
+                Debug.Log(eventData.pointerDrag.name);
                var go= Resources.Load<GameObject>("chip");
-                var obj= Instantiate<GameObject>(go, eventData.position, Quaternion.identity, transform);
+                var obj = Instantiate<GameObject>(go,par);//.parent.transform);
+                obj.GetComponent<RectTransform>().anchoredPosition = eventData.position;
                 obj.GetComponent<Image>().sprite = img.sprite;
                 PlayerCtr.instance.chips.Add(obj);
                 //GetComponent<Image>().color = new Color(1, 1, 1, 1);//我刚开始把图片设为了透明

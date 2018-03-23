@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224504943583518172}
   - component: {fileID: 222671239562333002}
   - component: {fileID: 114430163442267668}
-  - component: {fileID: 114419391185963700}
   m_Layer: 5
   m_Name: chip
   m_TagString: Untagged
@@ -29,17 +28,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114419391185963700
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1157801835340042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114430163442267668
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -9,12 +9,13 @@ public class MyImage : Image
 	{  
 		this.polyCollider = this.GetComponent<PolygonCollider2D>();  
 
-		Debug.LogError(this.polyCollider != null);  
+		Debug.Log(this.polyCollider != null);  
 	}  
 	
 	public override bool IsRaycastLocationValid(Vector2 sp, Camera eventCamera)  
 	{  
-		Vector3 world = eventCamera.ScreenToWorldPoint(new Vector3(sp.x, sp.y, 0));  
-		return this.polyCollider.bounds.Contains(world);  
-	}  
+		//Vector3 world = eventCamera.ScreenToWorldPoint(new Vector3(sp.x, sp.y, 0));  
+		//return this.polyCollider.bounds.Contains(world);
+        return polyCollider.OverlapPoint(sp);
+    }  
 }  
